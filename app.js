@@ -8,10 +8,19 @@ const calculator = document.querySelector('#calculator')
 const display = document.querySelector('.display')
 /*----------------------------- Event Listeners -----------------------------*/
 buttons.forEach((button) => {
+    // button.addEventListener('mousedown', (event) => {
+    //     event.target.style.backgroundColor = 'yellow'
+    //     event.target.style.borderColor = 'yellow'
+    //     event.target.style.color = 'black'
+
+    // })
+
     button.addEventListener('click', (event) => {
         console.log(event.target.innerText)
+
         input = event.target.innerText
     })
+
 
 })
 calculator.addEventListener('click', (event) => {
@@ -22,7 +31,8 @@ calculator.addEventListener('click', (event) => {
 
     if (event.target.classList.contains('operator')) {
         num1 = Number(display.innerText)
-        operator = event.target.innerText
+        operatorInput = event.target.innerText
+        operator = operatorInput
         clearScreen()
 
         if (typeof input === 'number') {
@@ -30,18 +40,22 @@ calculator.addEventListener('click', (event) => {
         }
     }
     if (event.target.classList.contains('equals')) {
-        num2 = Number(display.innerText)
-        switch (operator) {
+        let num2 = Number(display.innerText)
+
+        switch (operatorInput) {
             case "+":
                 display.innerText = addition(num1, num2)
 
                 break;
+
             case "-":
                 display.innerText = subtraction(num1, num2)
+
 
                 break;
             case "*":
                 display.innerText = multiplication(num1, num2)
+
 
                 break;
             case "/":
@@ -50,8 +64,9 @@ calculator.addEventListener('click', (event) => {
                 break;
             default:
                 num1 = Number(display.innerText)
-                break;
+                operatorInput = operator
         }
+
     }
 
     // if (event.target.classList.contains('number')) {
@@ -63,6 +78,9 @@ calculator.addEventListener('click', (event) => {
         clearScreen()
     }
 })
+// buttons.addEventListener('mousedown', (event) => {
+//     event.target.style.backgroundColor = 'yellow'
+// })
 /*-------------------------------- Functions --------------------------------*/
 const addition = (num1, num2) => {
     return num1 + num2
