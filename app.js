@@ -9,7 +9,6 @@ const display = document.querySelector('.display')
 /*----------------------------- Event Listeners -----------------------------*/
 buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
-
         console.log(event.target.innerText)
         input = event.target.innerText
     })
@@ -17,8 +16,10 @@ buttons.forEach((button) => {
 })
 calculator.addEventListener('click', (event) => {
     if (event.target.classList.contains('number')) {
+
         display.innerText += Number(input)
     }
+
     if (event.target.classList.contains('operator')) {
         num1 = Number(display.innerText)
         operator = event.target.innerText
@@ -33,22 +34,31 @@ calculator.addEventListener('click', (event) => {
         switch (operator) {
             case "+":
                 display.innerText = addition(num1, num2)
-                num1 = Number(display.innerText)
+
                 break;
             case "-":
                 display.innerText = subtraction(num1, num2)
-                num1 = Number(display.innerText)
+
                 break;
             case "*":
                 display.innerText = multiplication(num1, num2)
-                num1 = Number(display.innerText)
+
                 break;
             case "/":
                 display.innerText = division(num1, num2)
+
+                break;
+            default:
                 num1 = Number(display.innerText)
                 break;
         }
     }
+
+    // if (event.target.classList.contains('number')) {
+    //     input = event.target.innerText
+    //     clearScreen()
+    //     display.innerText = input
+    // }
     if (event.target.innerText === 'C') {
         clearScreen()
     }
